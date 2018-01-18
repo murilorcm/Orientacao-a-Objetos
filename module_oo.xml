@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_oo" default="compile.module.oo">
+  <dirname property="module.oo.basedir" file="${ant.file.module_oo}"/>
+  
+  <property name="module.jdk.home.oo" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.oo" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.oo" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.oo" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="oo.output.dir" value="${module.oo.basedir}/out/production/OO"/>
+  <property name="oo.testoutput.dir" value="${module.oo.basedir}/out/test/OO"/>
+  
+  <path id="oo.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="oo.module.production.classpath">
+    <path refid="${module.jdk.classpath.oo}"/>
+    <path refid="library.kotlinjavaruntime.classpath"/>
+  </path>
+  
+  <path id="oo.runtime.production.module.classpath">
+    <pathelement location="${oo.output.dir}"/>
+    <path refid="library.kotlinjavaruntime.classpath"/>
+  </path>
+  
+  <path id="oo.module.classpath">
+    <path refid="${module.jdk.classpath.oo}"/>
+    <pathelement location="${oo.output.dir}"/>
+    <path refid="library.kotlinjavaruntime.classpath"/>
+  </path>
+  
+  <path id="oo.runtime.module.classpath">
+    <pathelement location="${oo.testoutput.dir}"/>
+    <pathelement location="${oo.output.dir}"/>
+    <path refid="library.kotlinjavaruntime.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.oo">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.oo">
+    <patternset refid="excluded.from.module.oo"/>
+  </patternset>
+  
+  <path id="oo.module.sourcepath">
+    <dirset dir="${module.oo.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.oo" depends="compile.module.oo.production,compile.module.oo.tests" description="Compile module OO"/>
+  
+  <target name="compile.module.oo.production" depends="register.custom.compilers" description="Compile module OO; production classes">
+    <mkdir dir="${oo.output.dir}"/>
+    <javac2 destdir="${oo.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.oo}/javac">
+      <compilerarg line="${compiler.args.oo}"/>
+      <bootclasspath refid="oo.module.bootclasspath"/>
+      <classpath refid="oo.module.production.classpath"/>
+      <src refid="oo.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.oo"/>
+    </javac2>
+    
+    <copy todir="${oo.output.dir}">
+      <fileset dir="${module.oo.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.oo.tests" depends="register.custom.compilers,compile.module.oo.production" description="compile module OO; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.oo" description="cleanup module">
+    <delete dir="${oo.output.dir}"/>
+    <delete dir="${oo.testoutput.dir}"/>
+  </target>
+</project>
