@@ -1,3 +1,13 @@
+package br.com.empresa.banco;
+
+import br.com.empresa.banco.conta.ContaCorrente;
+import br.com.empresa.banco.conta.ContaPoupança;
+import br.com.empresa.banco.conta.SeguroDeVida;
+import br.com.empresa.banco.conta.Tributavel;
+import br.com.empresa.banco.sistema.AtualizadorDeContas;
+import br.com.empresa.banco.sistema.GerenciadorDeImpostoDeRenda;
+import br.com.empresa.banco.sistema.ValorInvalidoException;
+
 public class TesteContas {
 
     public static void main(String[] args) {
@@ -35,7 +45,7 @@ public class TesteContas {
 
         System.out.printf("===========================\n" + "SaldoTotal: %.2f\n", adc.getSaldoTotal(), "===========================\n");
 
-        System.out.printf("\nTributo Conta Corrente: R$%.2f\n", cc.calculaTributos());
+        System.out.printf("\nTributo br.com.empresa.banco.conta.Conta Corrente: R$%.2f\n", cc.calculaTributos());
         gir.adiciona(cc);
 
         System.out.printf("\nTributo Seguro de Vida: R$%.2f\n", sv.calculaTributos());

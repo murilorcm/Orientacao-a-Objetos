@@ -1,3 +1,7 @@
+package br.com.empresa.banco.conta;
+
+import br.com.empresa.banco.sistema.ValorInvalidoException;
+
 public class ContaPoupança extends Conta {
 
     @Override

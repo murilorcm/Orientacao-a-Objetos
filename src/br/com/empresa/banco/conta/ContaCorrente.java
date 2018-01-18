@@ -1,3 +1,5 @@
+package br.com.empresa.banco.conta;
+
 public class ContaCorrente extends Conta implements Tributavel {
 
     @Override

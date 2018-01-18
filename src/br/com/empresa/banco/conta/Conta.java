@@ -1,3 +1,7 @@
+package br.com.empresa.banco.conta;
+
+import br.com.empresa.banco.sistema.ValorInvalidoException;
+
 public abstract class Conta {
     protected double saldo;
 
