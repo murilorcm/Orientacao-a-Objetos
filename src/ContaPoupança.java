@@ -6,7 +6,11 @@ public class ContaPoupança extends Conta {
     }
 
     @Override
-    public void deposita(double valor) {
-        this.saldo += valor - 0.10;
+    public void deposita(double valor) throws ValorInvalidoException {
+        if (valor < 0){
+            throw new ValorInvalidoException("Você tentou depositar um valor negativo");
+        } else {
+            this.saldo += valor - 0.10;
+        }
     }
 }
