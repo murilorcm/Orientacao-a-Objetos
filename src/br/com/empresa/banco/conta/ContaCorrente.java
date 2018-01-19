@@ -2,8 +2,6 @@ package br.com.empresa.banco.conta;
 
 public class ContaCorrente extends Conta implements Tributavel {
 
-    protected String tipo = "CONTA CORRENTE";
-
     public ContaCorrente(int numero) {
         super(numero);
     }

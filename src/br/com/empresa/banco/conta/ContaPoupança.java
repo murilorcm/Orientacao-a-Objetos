@@ -5,8 +5,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class ContaPoupança extends Conta {// implements Comparable<ContaPoupança> {
 
-    protected String tipo = "CONTA POUPANÇA";
-
     public ContaPoupança(int numero) {
         super(numero);
     }
