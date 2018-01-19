@@ -1,8 +1,15 @@
 package br.com.empresa.banco.conta;
 
 import br.com.empresa.banco.sistema.ValorInvalidoException;
+import org.jetbrains.annotations.NotNull;
 
-public class ContaPoupança extends Conta {
+public class ContaPoupança extends Conta {// implements Comparable<ContaPoupança> {
+
+    protected String tipo = "CONTA POUPANÇA";
+
+    public ContaPoupança(int numero) {
+        super(numero);
+    }
 
     @Override
     public void atualiza(double taxa) {
@@ -17,4 +24,9 @@ public class ContaPoupança extends Conta {
             this.saldo += valor - 0.10;
         }
     }
+
+    //@Override
+    //public int compareTo(@NotNull ContaPoupança outra) {
+    //    return this.getNumero() - outra.getNumero();
+    //}
 }

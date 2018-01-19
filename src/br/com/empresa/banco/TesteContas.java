@@ -11,13 +11,13 @@ import br.com.empresa.banco.sistema.ValorInvalidoException;
 public class TesteContas {
 
     public static void main(String[] args) {
-        ContaCorrente cc = new ContaCorrente();
-        ContaPoupança cp = new ContaPoupança();
+        ContaCorrente cc = new ContaCorrente(22);
+        ContaPoupança cp = new ContaPoupança(22);
         Tributavel sv = new SeguroDeVida();
 
         System.out.println("Iniciando depósito em conta corrente");
         try {
-            cc.deposita(5);
+            cc.deposita(1000);
             System.out.println("Depósito efetuado com sucesso!");
         } catch (ValorInvalidoException e) {
             System.out.println(e.getMessage());
@@ -51,7 +51,11 @@ public class TesteContas {
         System.out.printf("\nTributo Seguro de Vida: R$%.2f\n", sv.calculaTributos());
         gir.adiciona(sv);
 
-        System.out.printf("\nTotal de tritubos: R$%.2f", gir.getTotal());
+        System.out.printf("\nTotal de tritubos: R$%.2f\n", gir.getTotal());
 
+        System.out.println(cp.toString());
+
+        String texto ="Murilo é muito legal";
+        texto.split(" ");
     }
 }
