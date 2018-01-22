@@ -14,7 +14,7 @@ public class TestaOrdenacao {
         Random random = new Random();
 
         for (i = 5; i > 0; i--) {
-            agencia.add(CriarConta(i, random.nextInt(9999), random.nextInt(2)));
+            agencia.add(criarConta(i, random.nextInt(9999), random.nextInt(2)));
         }
 
         Collections.shuffle(agencia);
@@ -33,7 +33,7 @@ public class TestaOrdenacao {
 
     }
 
-    public static Conta CriarConta ( int numero, int saldo, int tipo) throws ValorInvalidoException {
+    public static Conta criarConta ( int numero, int saldo, int tipo) throws ValorInvalidoException {
 
         Conta c = null;
 

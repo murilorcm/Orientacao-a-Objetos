@@ -3,6 +3,8 @@ package br.com.empresa.banco.conta;
 import br.com.empresa.banco.sistema.ValorInvalidoException;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
 public abstract class Conta implements Comparable<Conta> {
     protected double saldo;
     protected int numero;
@@ -47,19 +49,26 @@ public abstract class Conta implements Comparable<Conta> {
 
     @Override
     public String toString() {
-        return "Número: " + getNumero() + " Saldo: " + getSaldo();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        Conta outraConta = (Conta) obj;
-
-        return this.numero == outraConta.numero;
+        return "Número: " + this.getNumero() + " | Tipo: " + this.getTipo() + " | Saldo: R$" + this.getSaldo();
     }
 
     @Override
     public int compareTo(@NotNull Conta outra) {
         return this.getNumero() - outra.getNumero();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Conta)) return false;
+        Conta conta = (Conta) o;
+        return numero == conta.numero;
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(numero);
     }
 }
 
